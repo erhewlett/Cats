@@ -90,10 +90,10 @@ java -cp out;lib/mysql-connector-j-9.1.0.jar ui.MainUI
 | PT-2b| Delete employee with confirmation    | HR Admin   |
 | PT-2c| Raise salaries below threshold       | HR Admin   |
 | PT-3 | View pay history newest first        | Employee   |
-| PT-4 | Search by name, DOB, empID           | HR Admin   |
+| PT-4 | Search by name, DOB, SSN, empID      | HR Admin   |
 | PT-5 | New hires report by date range       | HR Admin   |
 | PT-6 | Raise salaries within a range        | HR Admin   |
-| PT-7 | Total pay by job title report        | HR Admin   |
-| PT-8 | Total pay by division report         | HR Admin   |
+| PT-7 | Total pay by job title (month/year)  | HR Admin   |
+| PT-8 | Total pay by division (month/year)   | HR Admin   |
 | PT-9 | Add new employee (auto empID)        | HR Admin   |
 | PT-10| Employee self-service profile view   | Employee   |
