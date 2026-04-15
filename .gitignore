@@ -1,0 +1,22 @@
+# Compiled output
+out/
+*.class
+
+# IDE config
+.idea/
+*.iml
+.vscode/
+*.eclipse
+.settings/
+.classpath
+.project
+
+# macOS
+.DS_Store
+
+# Local-only submission helper docs
+FINAL_SUBMISSION_PACK.md
+SDD_READY_CONTENT.md
+DIAGRAM_BUILD_SPECS.md
+FINAL_DEMO_SCRIPT.md
+FINAL_SUBMISSION_CHECKLIST.md
