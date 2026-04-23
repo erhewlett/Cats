@@ -190,6 +190,11 @@ public class EmployeeUI {
                 String mobile = scanner.nextLine().trim();
                 empController.updateEmployeeField(empid, "emergency_contact_mobile", mobile);
             }
+            case "4" -> {
+                System.out.print("New Email: ");
+                String email = scanner.nextLine().trim();
+                empController.updateEmployeeField(empid, "email", email);
+            }
             default -> System.out.println("Invalid option.");
         }
     }
