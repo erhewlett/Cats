@@ -100,4 +100,10 @@ public interface EmployeeDAO {
      * Returns true if a row was deleted, false if empID not found.
      */
     boolean deleteEmployee(int empid);
+
+    /**
+     * Update address for one employee
+     * Used to allow ADMIN to edit any given employee's address PT-2
+     */
+    boolean updateAddress(int empid, String street, int cityID, int stateID, String zip);
 }
