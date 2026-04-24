@@ -239,6 +239,29 @@ public class HRAdminUI {
                 double newSalary = InputValidator.parseDouble(scanner.nextLine());
                 empController.updateEmployeeSalary(id, newSalary);
             }
+            case "8" -> {
+                // take required address inputs
+                System.out.print("New Street Address: ");
+                String street = scanner.nextLine().trim();
+
+                System.out.print("New City ID: ");
+                int cityID = InputValidator.parseID(scanner.nextLine());
+
+                System.out.print("New State ID: ");
+                int stateID = InputValidator.parseID(scanner.nextLine());
+
+                System.out.print("New ZIP Code: ");
+                String zip = scanner.nextLine().trim();
+
+                boolean success = empController.updateEmployeeAddress(id, street, cityID, stateID, zip);
+
+                if (success) {
+                    System.out.println("Address updated successfully.");
+                } 
+                else {
+                    System.out.println("Could not update address. Please check your IDs.");
+                }
+            }
             default -> System.out.println("Invalid option.");
         }
     }
