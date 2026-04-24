@@ -103,6 +103,59 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     // ----------------------------------------------------------------
+    // ADDRESS HELPERS - for updating employee address
+    // ----------------------------------------------------------------
+    /**
+     * twin helper which is able to take strings as input (Method Overloading)
+     * creates a temporary Employee to work with existing insertAddress logic
+     */
+    private int insertAddress(Connection conn, String street, int cityID, int stateID, String zip) throws SQLException {
+        Employee temp = new Employee();
+        temp.setStreet(street);
+        temp.setCityID(cityID);
+        temp.setStateID(stateID);
+        temp.setZip(zip);
+
+        return insertAddress(conn, temp);
+    }
+
+    /**
+     * implement address update
+     */
+    @Override
+    public boolean updateAddress(int empid, String street, int cityID, int stateID, String zip) {
+        String sql = "UPDATE employees SET addressID = ? WHERE empid = ?";
+        try {
+            Connection conn = DBConnection.getInstance();
+            boolean originalAutoCommit = conn.getAutoCommit();
+            conn.setAutoCommit(false);  // begin transaction
+
+            try {
+                // get address ID
+                int targetAddressID = insertAddress(conn, street, cityID, stateID, zip);
+
+                // link employee to the address
+                try (PreparedStatement ps = conn.prepareStatement(sql)){
+                    ps.setInt(1, targetAddressID);
+                    ps.setInt(2, empid);
+                    int rows = ps.executeUpdate();
+
+                    conn.commit();
+                    return rows > 0;
+                }
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(originalAutoCommit);
+            }
+        } catch (SQLException e) {
+            System.err.println("[EmployeeDAO] updateAddress error: " + e.getMessage());
+        }
+        return false;
+    }
+
+    // ----------------------------------------------------------------
     // INSERT
     // ----------------------------------------------------------------
     @Override
