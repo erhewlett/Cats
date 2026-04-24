@@ -204,6 +204,7 @@ public class HRAdminUI {
         System.out.println("5. Emergency Contact Name");
         System.out.println("6. Emergency Contact Mobile");
         System.out.println("7. Salary");
+        System.out.println("8. Address");
         System.out.print("Select: ");
         String choice = scanner.nextLine().trim();
 
