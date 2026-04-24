@@ -274,6 +274,26 @@ public class EmployeeController {
         return success;
     }
 
+    public boolean updateEmployeeAddress(int empid, String street, int cityID, int stateID, String zip) {
+        // verify the employee whose address is being updated exists
+        if (employeeDAO.findByID(empid) == null) {
+            System.out.println("Error: Employee ID " + empid + " not found.");
+            return false;
+        }
+
+        if (!InputValidator.isValidString(street) || !InputValidator.isValidZip(zip)) {
+            System.out.println("Error: Invalid street or ZIP");
+            return false;
+        }
+
+        if (!InputValidator.isValidID(cityID) || !InputValidator.isValidID(stateID)) {
+            System.out.println("Error: Invalid City or State ID.");
+            return false;
+        }
+
+        return employeeDAO.updateAddress(empid, street, cityID, stateID, zip);
+    }
+    
     public Employee searchOwnRecordByEmpID(int currentEmpID, int searchEmpID) {
         if (!InputValidator.isValidID(searchEmpID)) {
             System.out.println("ERROR: Employee ID must be a positive integer.");
