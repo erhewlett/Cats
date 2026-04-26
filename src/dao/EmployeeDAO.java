@@ -2,6 +2,7 @@ package dao;
 
 import model.Employee;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  * EmployeeDAO.java
@@ -106,4 +107,7 @@ public interface EmployeeDAO {
      * Used to allow ADMIN to edit any given employee's address PT-2
      */
     boolean updateAddress(int empid, String street, int cityID, int stateID, String zip);
+    boolean updateSalary(Connection conn, int empid, double newSalary);
+    boolean updateJobTitle(int empid, int jobTitleID);
+    boolean updateDivision(int empid, int divID);
 }
