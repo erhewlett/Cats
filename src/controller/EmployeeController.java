@@ -435,5 +435,37 @@ public class EmployeeController {
             System.out.println("No new hires found between " + startDate + " and " + endDate);
         }
         return results;
+    }// ----------------------------------------------------------------
+    // HR ADMIN JOB TITLE & DIVISION UPDATES
+    // ----------------------------------------------------------------
+
+    public boolean updateEmployeeJobTitle(int empid, int jobTitleID) {
+        if (employeeDAO.findByID(empid) == null) {
+            System.out.println("ERROR: Employee ID " + empid + " not found.");
+            return false;
+        }
+        if (!InputValidator.isValidID(jobTitleID)) {
+            System.out.println("ERROR: Invalid Job Title ID.");
+            return false;
+        }
+        boolean success = employeeDAO.updateJobTitle(empid, jobTitleID);
+        if (success) System.out.println("Employee " + empid + " job title updated successfully.");
+        else System.out.println("ERROR: Update failed.");
+        return success;
+    }
+
+    public boolean updateEmployeeDivision(int empid, int divID) {
+        if (employeeDAO.findByID(empid) == null) {
+            System.out.println("ERROR: Employee ID " + empid + " not found.");
+            return false;
+        }
+        if (!InputValidator.isValidID(divID)) {
+            System.out.println("ERROR: Invalid Division ID.");
+            return false;
+        }
+        boolean success = employeeDAO.updateDivision(empid, divID);
+        if (success) System.out.println("Employee " + empid + " division updated successfully.");
+        else System.out.println("ERROR: Update failed.");
+        return success;
     }
 }
