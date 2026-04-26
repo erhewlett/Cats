@@ -204,8 +204,10 @@ public class HRAdminUI {
         System.out.println("5. Emergency Contact Name");
         System.out.println("6. Emergency Contact Mobile");
         System.out.println("7. Salary");
-        System.out.println("8. Address");
-        System.out.print("Select: ");
+        System.out.println("8. Address");
+        System.out.println("9. Job Title");
+        System.out.println("10. Division");
+        System.out.print("Select: ");
         String choice = scanner.nextLine().trim();
 
         switch (choice) {
@@ -257,14 +259,24 @@ public class HRAdminUI {
                 boolean success = empController.updateEmployeeAddress(id, street, cityID, stateID, zip);
 
                 if (success) {
-                    System.out.println("Address updated successfully.");
-                } 
-                else {
-                    System.out.println("Could not update address. Please check your IDs.");
-                }
-            }
-            default -> System.out.println("Invalid option.");
-        }
+                    System.out.println("Address updated successfully.");
+                } 
+                else {
+                    System.out.println("Could not update address. Please check your IDs.");
+                }
+            }
+            case "9" -> {
+                System.out.print("New Job Title ID: ");
+                int titleID = InputValidator.parseID(scanner.nextLine());
+                empController.updateEmployeeJobTitle(id, titleID);
+            }
+            case "10" -> {
+                System.out.print("New Division ID: ");
+                int divID = InputValidator.parseID(scanner.nextLine());
+                empController.updateEmployeeDivision(id, divID);
+            }
+            default -> System.out.println("Invalid option.");
+        }
     }
 
     private Employee selectEmployeeForAction(String actionName) {
