@@ -469,18 +469,27 @@ public class HRAdminUI {
     // ----------------------------------------------------------------
 
     private void printEmployee(Employee e) {
-        System.out.println("\n" + "─".repeat(60));
-        System.out.printf("EmpID    : %d%n",      e.getEmpid());
-        System.out.printf("Name     : %s %s%n",   e.getFname(), e.getLname());
-        System.out.printf("Email    : %s%n",       e.getEmail());
-        System.out.printf("Hire Date: %s%n",       e.getHireDate());
-        System.out.printf("DOB      : %s%n",       e.getDob());
-        System.out.printf("Salary   : $%,.2f%n",   e.getSalary());
-        System.out.printf("Mobile   : %s%n",       e.getMobile());
-        System.out.printf("Emergency: %s | %s%n",  e.getEmergencyContactName(),
-                                                    e.getEmergencyContactMobile());
-        System.out.println("─".repeat(60));
-    }
+    System.out.println("\n" + "-".repeat(60));
+    System.out.printf("EmpID    : %d%n",      e.getEmpid());
+    System.out.printf("Name     : %s %s%n",   e.getFname(), e.getLname());
+    System.out.printf("Email    : %s%n",       e.getEmail());
+    System.out.printf("Hire Date: %s%n",       e.getHireDate());
+    System.out.printf("DOB      : %s%n",       e.getDob());
+    System.out.printf("Salary   : $%,.2f%n",   e.getSalary());
+    System.out.printf("Mobile   : %s%n",       e.getMobile());
+
+    System.out.printf("Emergency: %s | %s%n",
+        e.getEmergencyContactName(),
+        e.getEmergencyContactMobile());
+    // Display the address
+    System.out.println("\nAddress:");
+    System.out.printf("Street   : %s%n", e.getStreet());
+    System.out.printf("City ID  : %d%n", e.getCityID());
+    System.out.printf("State ID : %d%n", e.getStateID());
+    System.out.printf("ZIP      : %s%n", e.getZip());
+
+    System.out.println("-".repeat(60));
+}
 
     private void printEmployeeList(List<Employee> list) {
         if (list.isEmpty()) return;

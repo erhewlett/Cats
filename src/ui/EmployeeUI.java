@@ -112,6 +112,12 @@ public class EmployeeUI {
         System.out.printf("Mobile      : %s%n",        e.getMobile());
         System.out.printf("Emergency Contact: %s | %s%n",
             e.getEmergencyContactName(), e.getEmergencyContactMobile());
+        // Display Address
+        System.out.println("\nAddress:");
+        System.out.printf("Street   : %s%n", e.getStreet());
+        System.out.printf("City ID  : %d%n", e.getCityID());
+        System.out.printf("State ID : %d%n", e.getStateID());
+        System.out.printf("ZIP      : %s%n", e.getZip());
         System.out.println("─".repeat(60));
         // Note: salary is intentionally not shown to general employees
         // They can see pay history but not the annual salary figure
