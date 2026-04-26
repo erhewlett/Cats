@@ -85,7 +85,7 @@ public class SalaryController {
 
             for (Employee e : toUpdate) {
                 double newSalary = Math.round(e.getSalary() * (1 + raisePercent / 100) * 100.0) / 100.0;
-                boolean success = employeeDAO.updateSalary(e.getEmpid(), newSalary);
+                boolean success = employeeDAO.updateSalary(conn, e.getEmpid(), newSalary);
                 if (!success) {
                     conn.rollback(); // something failed — undo everything
                     System.out.println("ERROR: Update failed for empID " + e.getEmpid() +
@@ -159,7 +159,7 @@ public class SalaryController {
 
             for (Employee e : toUpdate) {
                 double newSalary = Math.round(e.getSalary() * (1 + raisePercent / 100) * 100.0) / 100.0;
-                boolean success = employeeDAO.updateSalary(e.getEmpid(), newSalary);
+                boolean success = employeeDAO.updateSalary(conn, e.getEmpid(), newSalary);
                 if (!success) {
                     conn.rollback();
                     System.out.println("ERROR: Update failed for empID " + e.getEmpid() +
