@@ -497,5 +497,46 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             System.err.println("[EmployeeDAO] deleteEmployee error: " + ex.getMessage());
         }
         return false;
+    }@Override
+    public boolean updateSalary(Connection conn, int empid, double newSalary) {
+        String sql = "UPDATE employees SET Salary = ? WHERE empid = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setDouble(1, newSalary);
+            ps.setInt(2, empid);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("[EmployeeDAO] updateSalary transaction error: " + ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateJobTitle(int empid, int jobTitleID) {
+        String sql = "UPDATE employee_job_titles SET job_titleID = ? WHERE empid = ?";
+        try {
+            Connection conn = DBConnection.getInstance();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, jobTitleID);
+            ps.setInt(2, empid);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("[EmployeeDAO] updateJobTitle error: " + ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateDivision(int empid, int divID) {
+        String sql = "UPDATE employee_division SET divID = ? WHERE empid = ?";
+        try {
+            Connection conn = DBConnection.getInstance();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, divID);
+            ps.setInt(2, empid);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("[EmployeeDAO] updateDivision error: " + ex.getMessage());
+        }
+        return false;
     }
 }
